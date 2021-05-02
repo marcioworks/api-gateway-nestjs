@@ -12,6 +12,7 @@ import {
   ClientProxyFactory,
   Transport
 } from '@nestjs/microservices';
+import { env } from 'process';
 import { CriarCategoriaDto } from './dtos/criar-categoria.dto';
 
 @Controller('api/v1')
@@ -22,8 +23,8 @@ export class AppController {
     this.clientAdminBackend = ClientProxyFactory.create({
       transport: Transport.RMQ,
       options: {
-        urls: ['amqp://user:5AF2R2vhyS5k@54.157.189.99:5672/smartranking'],
-        queue: 'admin-backend'
+        urls: [`amqp://user:${env.RABBITPASS}@54.157.189.99:5672/smartranking`],
+        queue: 'admin-teste'
       }
     });
   }
