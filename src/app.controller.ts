@@ -23,7 +23,7 @@ export class AppController {
     this.clientAdminBackend = ClientProxyFactory.create({
       transport: Transport.RMQ,
       options: {
-        urls: [`amqp://user:${env.RABBITPASS}@54.157.189.99:5672/smartranking`],
+        urls: [env.RABBIT_URL],
         queue: 'admin-teste'
       }
     });
