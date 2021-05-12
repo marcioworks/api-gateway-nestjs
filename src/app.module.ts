@@ -1,14 +1,18 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
+import { CategoriasModule } from './categorias/categorias.module';
+import { ClientProxySmartRanking } from './clientProxy/client-proxy';
+import { ProxyRMQModule } from './clientProxy/proxyRmq.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: '.env'
-    })
+    }),
+    CategoriasModule,
+    ProxyRMQModule
   ],
-  controllers: [AppController],
-  providers: []
+  controllers: [],
+  providers: [ClientProxySmartRanking]
 })
 export class AppModule {}
